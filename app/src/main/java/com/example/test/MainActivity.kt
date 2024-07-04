@@ -1,7 +1,6 @@
 package com.example.test
 
 import android.os.Bundle
-import android.os.Message
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -13,45 +12,27 @@ import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role.Companion.Image
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -62,6 +43,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.test.ui.theme.TestTheme
 
+// The class of characters displayed
 class MarvelHero(name: String, message: String, image: String)
 {
     private var _name : String = name
@@ -81,6 +63,7 @@ class MarvelHero(name: String, message: String, image: String)
     }
 }
 
+// List with 3 heroes
 var listOfHeroes = listOf(
     MarvelHero(
         name = "Iron Man",
@@ -101,6 +84,7 @@ var listOfHeroes = listOf(
     )
 )
 
+// MainActivity
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,6 +120,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// Displaying images with all heroes
 @Composable
 fun ListRow(model: MarvelHero, navController: NavController) {
     Column(
@@ -174,6 +159,7 @@ fun ListRow(model: MarvelHero, navController: NavController) {
     }
 }
 
+// MainScreen (first screen)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, navController: NavController, listState: LazyListState) {
@@ -231,7 +217,7 @@ fun MainScreen(modifier: Modifier = Modifier, navController: NavController, list
     }
 }
 
-
+// Universal screen with the output of a specific character (second screen)
 @Composable
 fun HeroScreen(index: Int?, heroesList: List<MarvelHero>, navController: NavController) {
 
